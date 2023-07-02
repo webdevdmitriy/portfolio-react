@@ -1,51 +1,28 @@
-import project01 from './../img/projects/01.jpg'
-import project02 from './../img/projects/02.jpg'
-import project03 from './../img/projects/03.jpg'
-import project04 from './../img/projects/04.jpg'
-import project05 from './../img/projects/05.jpg'
-import project06 from './../img/projects/06.jpg'
+import { useParams } from 'react-router-dom'
+import { projects } from '../helpers/projectList'
+import BtnGitHub from '../components/BtnGitHub/BtnGitHub'
 
-const Projects = () => {
+const Project = () => {
+  // достаем параметры из Route
+  const { id } = useParams()
+  console.log(id)
+  const project = projects[id]
   return (
     <main className="section">
       <div className="container">
-        <h2 className="title-1">Projects</h2>
-        <ul className="projects">
-          <li className="project">
-            <a href="./project-page.html">
-              <img src={project01} alt="Project img" className="project__img" />
-              <h3 className="project__title">Gaming streaming portal</h3>
-            </a>
-          </li>
-          <li className="project">
-            <a href="./project-page.html">
-              <img src={project02} alt="Project img" className="project__img" />
-              <h3 className="project__title">Video service</h3>
-            </a>
-          </li>
-          <li className="project">
-            <a href="./project-page.html">
-              <img src={project03} alt="Project img" className="project__img" />
-              <h3 className="project__title">Video portal</h3>
-            </a>
-          </li>
+        <div className="project-details">
+          <h1 className="title-1">{project.title}</h1>
 
-          <li className="project">
-            <img src={project04} alt="Project img" className="project__img" />
-            <h3 className="project__title">Dating app</h3>
-          </li>
-          <li className="project">
-            <img src={project05} alt="Project img" className="project__img" />
-            <h3 className="project__title">Landing</h3>
-          </li>
-          <li className="project">
-            <img src={project06} alt="Project img" className="project__img" />
-            <h3 className="project__title">Gaming community</h3>
-          </li>
-        </ul>
+          <img className="project-details__cover" alt={project.title} src={project.img} />
+
+          <div className="project-details__desc">
+            <p>Skills: {project.skills}</p>
+          </div>
+          {project.gitHubLink && <BtnGitHub link="https://github.com/" />}
+        </div>
       </div>
     </main>
   )
 }
 
-export default Projects
+export default Project

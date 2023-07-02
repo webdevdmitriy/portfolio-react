@@ -1,20 +1,31 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+
 import './styles/main.css'
 
 import NavBar from './components/Navbar/Navbar'
 
 import Footer from './components/Footer/Footer'
 import Home from './pages/Home'
-import Projects from './pages/Project'
+import Projects from './pages/Projects'
 import Contacts from './pages/Contacts'
+import Project from './pages/Project'
+
+import ScrollToTop from './utils/scrollToTop'
 
 function App() {
   return (
-    <div classNameName="App">
-      <NavBar />
-      {/* <Home /> */}
-      {/* <Projects /> */}
-      <Contacts />
-      <Footer />
+    <div className="App">
+      <Router>
+        <ScrollToTop />
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/contacts" element={<Contacts />} />
+          <Route path="/project/:id" element={<Project />} />
+        </Routes>
+        <Footer />
+      </Router>
     </div>
   )
 }
